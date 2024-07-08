@@ -41,11 +41,11 @@ class NetworkLayer{
         self.session=URLSession(configuration: sessionCofiguration)
     }
     
-     func request<T:Codable>(url:String, type:T.Type, httpMethod:HttpMethod = .Get, completion:@escaping(APIError?, T?)->Void){
-        guard let url=URL(string: url) else{
-           return completion(APIError.invalidUrl, nil)
-           
-        }
+     func request<T:Codable>(url:URL, type:T.Type, httpMethod:HttpMethod = .Get, completion:@escaping(APIError?, T?)->Void){
+//        guard let url=URL(string: url) else{
+//           return completion(APIError.invalidUrl, nil)
+//           
+//        }
         var request=URLRequest(url: url)
         request.httpMethod=httpMethod.rawValue
         let dataTask=self.session?.dataTask(with: request){data, resposne, error in
