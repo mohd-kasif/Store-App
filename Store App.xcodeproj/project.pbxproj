@@ -20,6 +20,9 @@
 		4BF643052C3C6DBA00401E31 /* ProductCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF643042C3C6DBA00401E31 /* ProductCellView.swift */; };
 		4BF643072C3C71B800401E31 /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF643062C3C71B800401E31 /* AddProductViewController.swift */; };
 		4BF643092C3C790F00401E31 /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF643082C3C790F00401E31 /* CategoryPickerView.swift */; };
+		4BF6430C2C3D4DF900401E31 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6430B2C3D4DF900401E31 /* Extensions.swift */; };
+		4BF6430E2C3D808D00401E31 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6430D2C3D808D00401E31 /* ProductDetailViewController.swift */; };
+		4BF643102C3DBF8B00401E31 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6430F2C3DBF8B00401E31 /* MessageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		4BF643042C3C6DBA00401E31 /* ProductCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellView.swift; sourceTree = "<group>"; };
 		4BF643062C3C71B800401E31 /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
 		4BF643082C3C790F00401E31 /* CategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerView.swift; sourceTree = "<group>"; };
+		4BF6430B2C3D4DF900401E31 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4BF6430D2C3D808D00401E31 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
+		4BF6430F2C3DBF8B00401E31 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +76,7 @@
 		4BF642BE2C2B48B700401E31 /* Store App */ = {
 			isa = PBXGroup;
 			children = (
+				4BF6430A2C3D4DE900401E31 /* Extensios */,
 				4BF642DA2C2C45C600401E31 /* Models */,
 				4BF642D72C2C457000401E31 /* Network Layer */,
 				4BF642D32C2B4A1600401E31 /* View Controllers */,
@@ -92,6 +99,8 @@
 				4BF643042C3C6DBA00401E31 /* ProductCellView.swift */,
 				4BF643062C3C71B800401E31 /* AddProductViewController.swift */,
 				4BF643082C3C790F00401E31 /* CategoryPickerView.swift */,
+				4BF6430D2C3D808D00401E31 /* ProductDetailViewController.swift */,
+				4BF6430F2C3DBF8B00401E31 /* MessageView.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -110,6 +119,14 @@
 				4BF642DD2C2C45EA00401E31 /* CategoryModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4BF6430A2C3D4DE900401E31 /* Extensios */ = {
+			isa = PBXGroup;
+			children = (
+				4BF6430B2C3D4DF900401E31 /* Extensions.swift */,
+			);
+			path = Extensios;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,12 +203,15 @@
 				4BF643052C3C6DBA00401E31 /* ProductCellView.swift in Sources */,
 				4BF643072C3C71B800401E31 /* AddProductViewController.swift in Sources */,
 				4BF642DE2C2C45EA00401E31 /* CategoryModel.swift in Sources */,
+				4BF6430E2C3D808D00401E31 /* ProductDetailViewController.swift in Sources */,
 				4BF642C02C2B48B700401E31 /* AppDelegate.swift in Sources */,
 				4BF642D52C2B4A3500401E31 /* SingleCellViewController.swift in Sources */,
 				4BF642E02C2C493F00401E31 /* API+URL.swift in Sources */,
+				4BF6430C2C3D4DF900401E31 /* Extensions.swift in Sources */,
 				4BF642D92C2C459600401E31 /* NetworkLayer.swift in Sources */,
 				4BF643032C3C49AC00401E31 /* ProductTableViewController.swift in Sources */,
 				4BF642C22C2B48B700401E31 /* SceneDelegate.swift in Sources */,
+				4BF643102C3DBF8B00401E31 /* MessageView.swift in Sources */,
 				4BF643092C3C790F00401E31 /* CategoryPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

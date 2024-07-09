@@ -34,4 +34,13 @@ extension URL{
     static func getProductByCategory(_ id:Int)->URL{
         return URL(string:"/api/v1/categories/\(id)/products",relativeTo: Self.deafult)!
     }
+    static var addProduct:URL{
+        URL(string:"/api/v1/products/", relativeTo: Self.deafult)!
+    }
+    
+    static func deleteProduct(_ id:Int)->URL{
+        return URL(string:"/api/v1/products/\(id)", relativeTo: Self.deafult)!
+    }
 }
+
+

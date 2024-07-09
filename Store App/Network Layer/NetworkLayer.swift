@@ -11,15 +11,18 @@ enum APIError:Error{
     case invalidUrl
     case requestFailed(description:String="")
     case failedSerialization
+    case invalidResponse(description:String="")
     
     var description:String{
         switch self{
         case .invalidUrl:
             return "invalid url"
-        case  let .requestFailed(description):
+        case  .requestFailed(_):
             return ""
         case .failedSerialization:
             return "failed serialization"
+        case .invalidResponse(_):
+            return ""
         }
     }
 }
@@ -41,13 +44,15 @@ class NetworkLayer{
         self.session=URLSession(configuration: sessionCofiguration)
     }
     
-     func request<T:Codable>(url:URL, type:T.Type, httpMethod:HttpMethod = .Get, completion:@escaping(APIError?, T?)->Void){
+    func request<T:Codable>(url:URL, type:T.Type, httpMethod:HttpMethod = .Get, httpBody:Data?=nil, completion:@escaping(APIError?, T?)->Void){
 //        guard let url=URL(string: url) else{
 //           return completion(APIError.invalidUrl, nil)
 //           
 //        }
         var request=URLRequest(url: url)
         request.httpMethod=httpMethod.rawValue
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody=httpBody
         let dataTask=self.session?.dataTask(with: request){data, resposne, error in
             DispatchQueue.main.async {
                 if let error=error{
@@ -55,23 +60,46 @@ class NetworkLayer{
                     return
                 }
                 guard let response=resposne as? HTTPURLResponse else {
-                    return completion(APIError.requestFailed(description: "invalid response code"), nil)
+                    return completion(APIError.requestFailed(description: "invalid response"), nil)
                 }
                 guard let data=data else {
-                    return completion(APIError.requestFailed(description: "data is nnil"), nil)
+                    return completion(APIError.requestFailed(description: "data is nil"), nil)
                 }
-                if response.statusCode==200{
+                if (200...299).contains(response.statusCode){
                     do{
                         let decoder=JSONDecoder()
                         let decodedObject=try decoder.decode(type, from: data)
                         completion(nil, decodedObject)
                     } catch let error{
-                        print(error,"serialization error")
+                        print(error,"decoding error")
                         completion(APIError.failedSerialization, nil)
                     }
+                } else {
+                    completion(APIError.invalidResponse(description: "Invalid response code \(response.statusCode)"), nil)
                 }
+                
             }
         }
         dataTask?.resume()
+    }
+    
+    
+    func encode<T:Codable>(model:T)->Data?{
+        let data=try? JSONEncoder().encode(model)
+        return data
+    }
+}
+
+extension NetworkLayer{
+    func deleteProduct(id: Int) async throws-> Bool{
+        var request=URLRequest(url: URL.deleteProduct(id))
+        request.httpMethod="DELETE"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let (data, response)=try await URLSession.shared.data(for: request)
+        guard let response=response as? HTTPURLResponse, response.statusCode==200 else {
+            throw APIError.invalidResponse(description: "invalid status code")
+        }
+        let isDeleted=try JSONDecoder().decode(Bool.self, from: data)
+        return isDeleted
     }
 }
